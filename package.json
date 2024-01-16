@@ -7,14 +7,14 @@
     "node": ">=18.x"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ts-node src/scraper.ts"
   },
   "type": "commonjs",
   "author": "Fiber AI",
   "license": "MIT",
   "dependencies": {
+    "asynckit": "^0.4.0",
     "axios": "^1.5.0",
-    "cheerio": "^1.0.0-rc.12",
     "dayjs": "^1.11.9",
     "fast-csv": "^4.3.6",
     "fs-extra": "^11.1.1",
@@ -29,11 +29,13 @@
     "tar": "^6.2.0"
   },
   "devDependencies": {
+    "@types/cheerio": "^0.22.35",
     "@types/fs-extra": "^11.0.2",
     "@types/lodash": "^4.14.198",
     "@types/node": "^20.11.0",
     "@types/papaparse": "^5.3.8",
     "@types/tar": "^6.1.6",
+    "cheerio": "^1.0.0-rc.12",
     "prettier": "^3.0.3",
     "ts-node": "^10.9.2",
     "tsx": "^3.12.10",
