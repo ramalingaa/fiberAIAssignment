@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/next-js": "^2.1.5",
     "@chakra-ui/react": "^2.8.1",
+    "@crawlee/http": "^3.7.2",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@types/node": "^20.6.0",
@@ -26,7 +28,9 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
     "tailwindcss": "^3.3.3",
-    "typescript": "^5.2.2",
     "usehooks-ts": "^2.9.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
   }
 }

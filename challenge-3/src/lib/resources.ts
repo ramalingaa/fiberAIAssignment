@@ -3,7 +3,6 @@
  * with the challenge.
  */
 
-import { sleep } from "crawlee";
 
 /**
  * A mock function to "check" if the given domain is available for purchase.
@@ -17,6 +16,10 @@ import { sleep } from "crawlee";
  *  function uses a mock API call; treat its answers as correct for the
  *  purposes of this challenge.
  */
+
+const sleep = (ms:number) => {
+  return new Promise(resolve => setTimeout(resolve, ms));
+};
 export async function isDomainAvailable(domain: string): Promise<boolean> {
   // NOTE: in a real setting we'd call some domain availability API,
   // but for this challenge we'll do some mock logic to simulate an API call.
