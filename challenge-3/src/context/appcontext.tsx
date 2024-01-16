@@ -1,7 +1,7 @@
 // contexts/MenuContext.tsx
 import { DomainItem } from '@/components/challenge';
 import { createContext, useState, useContext } from 'react';
-
+import React from 'react';
 // Define the shape of your context state
 interface AppContextState {
     domains: Set<DomainItem>; // Replace 'any' with your actual state type
@@ -23,7 +23,7 @@ export const useAppContext = () => {
 // Create a context provider component
 export const MenuContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [domains, setDomains] = useState<Set<DomainItem>>(new Set([
-        { name: "example.com", isAvailable: true }
+        { name: "example.com", isAvailable: false }
       ]));
   return (
     <AppContext.Provider value={{ domains, setDomains }}>

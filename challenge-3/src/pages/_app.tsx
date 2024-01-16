@@ -1,6 +1,7 @@
 // _app.tsx
 import { ChakraProvider } from "@chakra-ui/react";
 import { AppProps } from "next/app";
+import React from 'react';
 
 import "@/styles/globals.css";
 import Menu from "@/components/menu";

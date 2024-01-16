@@ -1,10 +1,7 @@
-import  DomainCart, { DomainItem }  from "@/components/challenge";
-import MenuComponent from "@/components/menu";
+import  DomainCart  from "@/components/challenge";
 import { Container } from "@chakra-ui/react";
 import Head from "next/head";
-import Cart from "./cart";
-import { useState } from "react";
-
+import React from "react";
 export default function Home() {
   return (
     <>

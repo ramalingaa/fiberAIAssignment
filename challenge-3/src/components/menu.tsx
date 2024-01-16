@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import ShoppingCartIcon from './shoppingcarticon';
-import { useAppContext } from '@/context/appcontext';
+import { useAppContext } from '../context/appcontext';
 import { useRouter } from 'next/router';
 
 

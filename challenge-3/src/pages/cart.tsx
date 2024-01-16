@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Button, Flex, Text, useToast, VStack } from '@chakra-ui/react';
 import { DomainItem } from '@/components/challenge';
-import { useAppContext } from '@/context/appcontext';
+import { useAppContext } from '../context/appcontext';
 
 // This type definition assumes you have a domain object with name and isAvailable properties
 
