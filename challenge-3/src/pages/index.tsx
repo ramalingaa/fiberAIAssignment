@@ -1,7 +1,7 @@
-import { Challenge } from "@/components/challenge";
+import  DomainCart  from "@/components/challenge";
 import { Container } from "@chakra-ui/react";
 import Head from "next/head";
-
+import React from "react";
 export default function Home() {
   return (
     <>
@@ -11,7 +11,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Container paddingY={12}>
-        <Challenge maxDomains={12} />
+        <DomainCart numDomainsRequired = {12}/>
       </Container>
     </>
   );

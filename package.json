@@ -4,7 +4,7 @@
   "description": "Fiber AI's coding challenge",
   "main": "index.js",
   "engines": {
-    "node": "18.x"
+    "node": ">=18.x"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,7 +15,6 @@
   "dependencies": {
     "axios": "^1.5.0",
     "cheerio": "^1.0.0-rc.12",
-    "crawlee": "^3.5.4",
     "dayjs": "^1.11.9",
     "fast-csv": "^4.3.6",
     "fs-extra": "^11.1.1",
