@@ -85,7 +85,7 @@ var cheerio = require("cheerio");
 var outputFilePath = "./output/output.txt";
 function scrapeWebsite(url) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, $, companyDescription, error_1;
+        var response, $_1, links, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -93,11 +93,14 @@ function scrapeWebsite(url) {
                     return [4 /*yield*/, axios_1.default.get(url)];
                 case 1:
                     response = _a.sent();
-                    $ = cheerio.load(response.data);
-                    companyDescription = $(".whitespace-pre-line").text();
-                    // const allText = $.root().text();
-                    // fs.writeFileSync(outputFilePath, allText, 'utf-8');
-                    console.log('Data written to:', companyDescription);
+                    $_1 = cheerio.load(response.data);
+                    links = $_1("a");
+                    // Loop over all the anchor tags
+                    links.each(function (index, value) {
+                        var _a;
+                        // Print the text from the tags and the associated href
+                        console.log($_1(value).text(), " => ", ((_a = $_1(value).attr("href")) === null || _a === void 0 ? void 0 : _a.match("https?://www.linkedin.com/")) ? $_1(value).attr("href") : "https://" + $_1(value).attr("href"));
+                    });
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();

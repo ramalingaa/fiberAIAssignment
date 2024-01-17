@@ -59,10 +59,18 @@ async function scrapeWebsite(url: string) {
   try {
     const response = await axios.get(url);
     const $ = cheerio.load(response.data);
-    const companyDescription = $(".whitespace-pre-line").text();
-    const founderInfo = $(".whitespace-pre-line").text();
+    // const companyDescription = $("a").has("href")
+    // // //bg-image-twitter for twitter url, bg-image-linkedin
+    // // const founderInfo = $(".whitespace-pre-line").text();
+    // const $p = $('p');
+    // console.log('Data written to:', companyDescription);
+    const links = $("a")
 
-    console.log('Data written to:', companyDescription);
+        // Loop over all the anchor tags
+        links.each((index, value) => {
+            // Print the text from the tags and the associated href
+            console.log($(value).text(), " => ", $(value).attr("href")?.match("https?://www.linkedin.com/") ? $(value).attr("href") : "https://" + $(value).attr("href"));
+        })
   } catch (error) {
     console.error('Error:', error);
   }
