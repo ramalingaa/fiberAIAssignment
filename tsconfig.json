@@ -113,10 +113,12 @@
 // }
 {
   "compilerOptions": {
-    "target": "ES2022",
+    "target": "ES6",
     "lib": ["ESNext"],
-    "module": "ES2022",  // Updated this line to use CommonJS module format
+    "module": "CommonJS",  // Updated this line to use CommonJS module format
     "moduleResolution": "node",
+    "outDir": "./dist",
+    "rootDir": "./",
     "allowJs": false,
     "isolatedModules": true,
     "esModuleInterop": true,
