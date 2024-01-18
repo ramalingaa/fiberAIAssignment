@@ -1,5 +1,5 @@
 import os
-from parserfile import person_information_parse
+from llmoutputparser import person_information_parse
 from webscraper import extract_html_from_url
 
 from langchain.chains import LLMChain

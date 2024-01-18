@@ -4,6 +4,8 @@ import { DomainName } from './challenge';
 import { addDomain } from '../lib/adddomain-helper';
 import React from 'react';
 import { useAppContext } from '../context/appcontext';
+import { Progress } from "@chakra-ui/react";
+
 /**
 /**
  * Component for displaying the hero image and search form.
@@ -59,33 +61,41 @@ const HeroImage: React.FC = () => {
     return (
       <>
         {!isMobile && (
-          <VStack spacing={4} maxWidth={{ lg: '50%' }}>
+          <VStack spacing={4} maxWidth={{ lg: '50%' }} gap={4}>
+            <div className='progress-bar'>
+              <Progress hasStripe value={Array.from(domains).length * 8.33} size={'lg'}/> 
+
+            </div>
             <Box flexBasis={{ lg: '50%' }}>
-              <Text fontSize="4xl" fontWeight="bold">
+              <Text fontSize="4xl" fontWeight="bold" className='hero-text'>
                 Unleash Your Online Potential Find and secure the perfect domain name for your vision.
               </Text>
               <HStack mt={4}>
                 <Input
-                  placeholder="Search"
+                  placeholder="Search Your Domain"
                   size="lg"
                   value={inputValue}
                   onChange={handleChange}
                   onKeyDown={handleKeyPress}
                   isInvalid={!isInputValid}
                 />
-                <Button onClick={() => addDomain(props)}>Add</Button>
+                <Button onClick={() => addDomain(props)} size="lg" colorScheme="blue">Add</Button>
               </HStack>
               {!isInputValid && <Text color="red.500">{domainErrorMessage}</Text>}
             </Box>
           </VStack>
         )}
         {isMobile && (
-          <VStack flexBasis={{ base: '100%', lg: '50%' }} mt={4}>
-            <Text fontSize="4xl" fontWeight="bold" textAlign="center">
+          <VStack flexBasis={{ base: '100%', lg: '50%' }} mt={4} gap={4}>
+            <div className='progress-bar'>
+            <Progress hasStripe value={Array.from(domains).length * 8.33} size={'lg'}/> 
+
+            </div>
+            <Text fontSize="4xl" fontWeight="bold" textAlign="center" className='hero-text'>
               Unleash Your Online Potential Find and secure the perfect domain name for your vision.
             </Text>
             <Input
-              placeholder="Search"
+              placeholder="Search Your Domain"
               size="lg"
               value={inputValue}
               onChange={handleChange}
@@ -93,7 +103,7 @@ const HeroImage: React.FC = () => {
               isInvalid={!isInputValid}
             />
             {!isInputValid && <Text color="red.500">{domainErrorMessage}</Text>}
-            <Button onClick={() => addDomain(props)}>Add</Button>
+            <Button onClick={() => addDomain(props)} size="lg" colorScheme="blue">Add</Button>
           </VStack>
         )}
       </>
@@ -108,6 +118,7 @@ const HeroImage: React.FC = () => {
       minH="70vh"
       px={8}
       mb={16}
+      className='width-80'
     >
       {isLoading ? (
         // If isLoading is true, display the Spinner

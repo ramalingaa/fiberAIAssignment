@@ -5,15 +5,15 @@ import React from 'react';
 
 import "@/styles/globals.css";
 import Menu from "@/components/menu";
-import { MenuContextProvider } from "@/context/appcontext";
+import { AppContextProvider } from "@/context/appcontext";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider>
-      <MenuContextProvider>
+      <AppContextProvider>
         <Menu />
         <Component {...pageProps} />
-      </MenuContextProvider>
+      </AppContextProvider>
     </ChakraProvider>
   );
 }

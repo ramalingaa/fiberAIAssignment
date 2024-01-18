@@ -36,20 +36,28 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var challenge_1 = require("./helpers/challenge");
+var challenge_1 = require("./challenge");
 var resources_1 = require("./resources");
 /**
  * This is the entry point for the challenge.
  * This will run your code.
  */
 (function () { return __awaiter(void 0, void 0, void 0, function () {
+    var error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, (0, challenge_1.processDataDump)(resources_1.DUMP_DOWNLOAD_URL, resources_1.SQLITE_DB_PATH)];
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, (0, challenge_1.processDataDump)(resources_1.DUMP_DOWNLOAD_URL, resources_1.SQLITE_DB_PATH)];
             case 1:
                 _a.sent();
-                console.log("✅ Done!");
-                return [2 /*return*/];
+                console.log("All operations have been completed. ✅ Done!");
+                return [3 /*break*/, 3];
+            case 2:
+                error_1 = _a.sent();
+                console.error(error_1);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
     });
 }); })();

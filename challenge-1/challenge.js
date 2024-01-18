@@ -52,65 +52,77 @@ var knex = (0, knex_1.default)({
 });
 // Main function that orchestrates the downloading, extraction, parsing, and DB insertion
 var processDataDump = function (url, dbPath) { return __awaiter(void 0, void 0, void 0, function () {
-    var outputPath, files, _i, files_1, file, csvFilePath, data, tableName, sampleData, error_1;
+    var outputPath, dbFolder, files, _i, files_1, file, csvFilePath, data, tableName, sampleData, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 outputPath = path.join(tmpDir, 'dump.tar.gz');
-                _a.label = 1;
-            case 1:
-                _a.trys.push([1, 9, 10, 12]);
+                if (!dbPath) {
+                    dbPath = './out/database.sqlite';
+                }
+                else {
+                    dbFolder = path.dirname(dbPath);
+                    if (!fs.existsSync(dbFolder)) {
+                        fs.mkdirSync(dbFolder, { recursive: true });
+                    }
+                    if (!fs.existsSync(dbPath)) {
+                        fs.writeFileSync(dbPath, '', { flag: 'wx' });
+                    }
+                }
+                ;
                 if (!fs.existsSync(tmpDir)) {
                     fs.mkdirSync(tmpDir, { recursive: true });
                 }
                 if (!fs.existsSync(path.dirname(dbPath))) {
                     fs.mkdirSync(path.dirname(dbPath), { recursive: true });
                 }
-                // await downloadFile(url, outputPath);
-                return [4 /*yield*/, (0, helpers_1.decompressAndExtract)(outputPath, tmpDir)];
-            case 2:
-                // await downloadFile(url, outputPath);
-                _a.sent();
+                ;
+                _a.label = 1;
+            case 1:
+                _a.trys.push([1, 8, 9, 11]);
                 files = fs.readdirSync(tmpDir);
                 _i = 0, files_1 = files;
-                _a.label = 3;
-            case 3:
-                if (!(_i < files_1.length)) return [3 /*break*/, 8];
+                _a.label = 2;
+            case 2:
+                if (!(_i < files_1.length)) return [3 /*break*/, 7];
                 file = files_1[_i];
-                if (!(path.extname(file) === '.csv')) return [3 /*break*/, 7];
+                if (!(path.extname(file) === '.csv')) return [3 /*break*/, 6];
                 console.log("Processing file: ".concat(file));
                 csvFilePath = path.join(tmpDir, file);
                 return [4 /*yield*/, (0, helpers_1.parseCSVFile)(csvFilePath)];
-            case 4:
+            case 3:
                 data = _a.sent();
                 tableName = path.basename(file, '.csv');
                 sampleData = data[0];
+                //creates the table in the database with the headers and sample data
                 return [4 /*yield*/, (0, helpers_1.createTable)(tableName, Object.keys(sampleData), sampleData, knex)];
+            case 4:
+                //creates the table in the database with the headers and sample data
+                _a.sent();
+                //inserts the data into the table in the database as batches of 100
+                return [4 /*yield*/, (0, helpers_1.batchInsertData)(knex, tableName, data)];
             case 5:
+                //inserts the data into the table in the database as batches of 100
                 _a.sent();
-                return [4 /*yield*/, (0, helpers_1.batchInsertData)(tableName, data)];
+                _a.label = 6;
             case 6:
-                _a.sent();
-                _a.label = 7;
-            case 7:
                 _i++;
-                return [3 /*break*/, 3];
-            case 8: return [3 /*break*/, 12];
-            case 9:
+                return [3 /*break*/, 2];
+            case 7: return [3 /*break*/, 11];
+            case 8:
                 error_1 = _a.sent();
                 console.error('An error occurred during the operation:', error_1);
-                return [3 /*break*/, 12];
-            case 10: 
+                return [3 /*break*/, 11];
+            case 9: 
             // fs.rmSync(tmpDir, { recursive: true, force: true });
             return [4 /*yield*/, knex.destroy()];
-            case 11:
+            case 10:
                 // fs.rmSync(tmpDir, { recursive: true, force: true });
                 _a.sent();
-                console.log('All operations have been completed.');
                 return [7 /*endfinally*/];
-            case 12: return [2 /*return*/];
+            case 11: return [2 /*return*/];
         }
     });
 }); };
 exports.processDataDump = processDataDump;
-// processDataDump("https://fiber-challenges.s3.amazonaws.com/dump.tar.gz");
+// processDataDump("https://fiber-challenges.s3.amazonaws.com/dump.tar.gz", './out/database.sqlite');

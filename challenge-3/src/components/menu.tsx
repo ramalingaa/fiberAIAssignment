@@ -11,13 +11,11 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import ShoppingCartIcon from './shoppingcarticon';
-import { useAppContext } from '../context/appcontext';
 import { useRouter } from 'next/router';
 
 
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { domains, setDomains } = useAppContext();
   const router = useRouter();
 
   const toggleMenu = () => {
@@ -30,9 +28,9 @@ const Menu = () => {
 
   return (
     <Box p={4} bg="blue.50">
-      <Flex alignItems="center">
+      <Flex alignItems="center" className='width-80'>
         {/* Logo on the left */}
-        <Text fontSize="xl" fontWeight="bold" color="black">
+        <Text fontSize="xl" fontWeight="bold" color="black" onClick={() => router.push('/')} cursor={'pointer'}>
           Domain_Pool
         </Text>
 
@@ -41,13 +39,10 @@ const Menu = () => {
         <Flex justify="center">
           {/* Display Links only on larger screens */}
           <Box display={displayLinks}>
-            <Link mx={4} color="black" _hover={{ textDecoration: 'underline' }}>
+            <Link mx={4} color="black" _hover={{ textDecoration: 'underline' }} href='/'>
               Home
             </Link>
-            <Link mx={4} color="black" _hover={{ textDecoration: 'underline' }}>
-              About
-            </Link>
-            <Link mx={4} color="black" _hover={{ textDecoration: 'underline' }}>
+            <Link mx={4} color="black" _hover={{ textDecoration: 'underline' }} href='/cart'>
               Cart
             </Link>
           </Box>
@@ -85,7 +80,7 @@ const Menu = () => {
       </Flex>
 
       {/* Collapsible Links for smaller screens */}
-      <Collapse in={isOpen} animateOpacity>
+      <Collapse in={isOpen}className='width-80' animateOpacity>
         <Flex direction="column" mt={4}>
           <Link
             color="black"
