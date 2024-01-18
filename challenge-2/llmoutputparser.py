@@ -1,8 +1,7 @@
-from langchain.output_parsers import PydanticOutputParser
 from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.pydantic_v1 import BaseModel, Field
 
-from typing import List, Dict, Any
+from typing import List, Dict
 
 
 class personInformation(BaseModel):
@@ -18,16 +17,6 @@ class personInformation(BaseModel):
     linkedin_url: str = Field(description="Linkedin URL of the company")
     verticals: List[str] = Field(description="Verticals of the company")
 
-    # def to_dict(self) -> Dict[str, Any]:
-    #     return {
-    #         "company_name": self.company_name,
-    #         "founders": self.founders,  # List of dictionaries
-    #         "founded_year": self.founded_year,
-    #         "team_size": self.team_size,
-    #         "jobs": self.jobs,  # List of dictionaries
-    #         "launch_posts": self.launch_posts,  # List of dictionaries
-    #         "website": self.website
-    #     }
 
 
 person_information_parse = JsonOutputParser(

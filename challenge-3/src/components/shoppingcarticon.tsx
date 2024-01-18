@@ -1,9 +1,6 @@
 
 import React from 'react';
 
-type Props = {
-
-};
 
 const ShoppingCartIcon: React.FC = () => (
     <svg
