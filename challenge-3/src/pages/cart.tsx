@@ -233,7 +233,7 @@ const Cart: React.FC<CartProps> = () => {
             {
                 Array.from(domains).length > 0 ? renderCartContent() : 
                 <Flex  justify='center' alignItems='center' direction="column" className='no-items-cart' gap={4}>
-                    <Text fontSize="4xl" fontWeight="semibold">Oh Ohhh You haven't added any domain yet Try adding some to your cart</Text>
+                    <Text fontSize="4xl" fontWeight="semibold">Oh Ohhh You haven&apos;t added any domain yet Try adding some to your cart</Text>
                     <Button onClick={() => router.push('/')} colorScheme='blue'>Go Back</Button>
                 </Flex>
             }
