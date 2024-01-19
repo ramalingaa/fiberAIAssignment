@@ -39,9 +39,9 @@ const knex = knexModule({
   };
   try {
     // downloads the file and stores it in the temporary directory
-    // await downloadFile(url, outputPath);
+    await downloadFile(url, outputPath);
     //extracts the file and stores it in the temporary directory
-    // await decompressAndExtract(outputPath, tmpDir);
+    await decompressAndExtract(outputPath, tmpDir);
     const files = fs.readdirSync(tmpDir);
     //iterates over the extracted CSV files in the temporary directory and processes them
     for (const file of files) {
@@ -61,7 +61,7 @@ const knex = knexModule({
   } catch (error) {
     console.error('An error occurred during the operation:', error);
   } finally {
-    // fs.rmSync(tmpDir, { recursive: true, force: true });
+    fs.rmSync(tmpDir, { recursive: true, force: true });
     await knex.destroy();
   }
 };

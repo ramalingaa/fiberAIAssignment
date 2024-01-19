@@ -1,5 +1,4 @@
 import  { Knex } from 'knex';
-import * as path from 'path';
 
 //insert data into table in batches of 100 each
 export const batchInsertData = async (knex: Knex, tableName: string, data: any[], batchSize: number = 100) => {
